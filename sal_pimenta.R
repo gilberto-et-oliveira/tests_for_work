@@ -10,7 +10,8 @@ library(sf)
 
 # Definindo o caminho do arquivo raster
 raster_path <- "Downloads/Linkedin/rasters/MAPBIOMAS-EXPORT-20250308T144234Z-001/MAPBIOMAS-EXPORT/JAC_urban_23.tif"
-shapefile_output <- "Downloads/Linkedin/rasters/MAPBIOMAS-EXPORT-20250308T144234Z-001/MAPBIOMAS-EXPORT/JAC_urban_23.shp"
+raster_output <- "Downloads/Linkedin/rasters/MAPBIOMAS-EXPORT-20250308T144234Z-001/MAPBIOMAS-EXPORT/JAC_urban_23_sieved.tif"
+shapefile_output <- "Downloads/Linkedin/rasters/MAPBIOMAS-EXPORT-20250308T144234Z-001/MAPBIOMAS-EXPORT/JAC_urban_23_sieved.shp"
 
 # Carregando o raster
 data_raster <- rast(raster_path)
@@ -44,5 +45,5 @@ vector_reprojected <- st_transform(vector_valid, crs = 4674)
 
 # Exportando o shapefile
 st_write(vector_reprojected, shapefile_output, append = FALSE)
-
+writeRaster(filtered_raster, raster_output)
 
